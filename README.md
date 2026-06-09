@@ -30,3 +30,7 @@ O sistema foi concebido sob o paradigma da Programação Orientada a Objetos (PO
 1. **Clone o repositório:**
    ```bash
    git clone [https://github.com/217136/Sistema_Clinico](https://github.com/217136/Sistema_Clinico)
+
+2. **Modelagem do Banco:**
+
+Antes de rodar a aplicação, acesse o editor de consultas do seu painel do Supabase, copie o conteúdo do arquivo schema.sql disponível na raiz deste repositório e execute-o para gerar a estrutura de tabelas iniciais necessárias.
