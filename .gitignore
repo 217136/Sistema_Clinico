@@ -1,0 +1,29 @@
+# Ignorar o arquivo de propriedades real com as senhas
+banco.properties
+
+# Ignorar arquivos compilados do Java
+*.class
+/bin/
+/target/
+/out/
+
+# Ignorar arquivos de configuração da Interface de Desenvolvimento Integrada (IDE)
+.idea/
+.settings/
+.classpath
+.project
+*.iml
+.vscode/
+
+# Ignorar arquivos de compilação e distribuição do NetBeans
+build/
+nbbuild/
+dist/
+nbdist/
+
+# Ignorar configurações privadas locais do NetBeans (MUITO IMPORTANTE)
+nbproject/private/
+
+# Ignorar cache e outros arquivos temporários do NetBeans
+build.xml
+.nb-gradle/
