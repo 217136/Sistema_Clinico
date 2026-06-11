@@ -133,35 +133,8 @@ public class TelaPrincipal extends JFrame {
         btnProntuarios.addActionListener(e -> new TelaProntuario(usuarioLogado).setVisible(true));
         btnUsuarios.addActionListener(e -> new TelaListagemUsuario(this).setVisible(true));
         
-        btnRelatorios.addActionListener(e -> {
-            JFileChooser fileChooser = new JFileChooser();
-            fileChooser.setDialogTitle("Salvar Relatório Gerencial");
-            fileChooser.setSelectedFile(new File("Relatorio_Gerencial_" + LocalDate.now().toString() + ".pdf"));
-
-            if (fileChooser.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
-                File arquivoSelecionado = fileChooser.getSelectedFile();
-                
-                try {
-                    setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-                    
-                    // --- INTEGRAÇÃO REAL COM O BANCO DE DADOS (BI) ---
-                    com.faculdade.sistema.clinica.dao.RelatorioDAO dao = new com.faculdade.sistema.clinica.dao.RelatorioDAO();
-                    
-                    // Extração dos mapas de dados consolidados diretamente do PostgreSQL
-                    java.util.Map<String, Integer> estatisticas = dao.obterEstatisticasAgendamentos();
-                    java.util.Map<String, Integer> produtividade = dao.obterProdutividadeProfissionais();
-
-                    // Exportação real para PDF com os indicadores corporativos
-                    com.faculdade.sistema.clinica.util.GeradorPDF.exportarRelatorioGerencial(estatisticas, produtividade, arquivoSelecionado.getAbsolutePath());
-
-                    JOptionPane.showMessageDialog(this, "Relatório gerencial exportado com sucesso!\nSalvo em: " + arquivoSelecionado.getAbsolutePath(), "Operação Concluída", JOptionPane.INFORMATION_MESSAGE);
-                } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(this, "Erro ao exportar o documento PDF: " + ex.getMessage(), "Erro Crítico", JOptionPane.ERROR_MESSAGE);
-                } finally {
-                    setCursor(Cursor.getDefaultCursor());
-                }
-            }
-        });
+        // Evento Atualizado (V2.0): Abre o Dashboard Gráfico de BI
+        btnRelatorios.addActionListener(e -> new TelaRelatoriosGerenciais(this).setVisible(true));
         
         btnSair.addActionListener(e -> {
             SwingUtilities.invokeLater(() -> new TelaLogin().setVisible(true));
